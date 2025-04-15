@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
     font-family: "Poppins", sans-serif;
 }
 
@@ -13,9 +12,17 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('/Images/Forest.jpg') no-repeat;
+    background: url('/Images/PurpalHaze.png') no-repeat;
     background-size: cover;
     background-position: center;
+
+    
+}
+
+header {
+    font-size: 36px;
+    color: #9bff60;
+    
 }
 
 .wrapper {
@@ -24,10 +31,19 @@ body {
     border: 2px solid rgb(255, 255, 255, .2);
     backdrop-filter: blur(10px);
     box-shadow: 0 0 10px rgba(0, 0, 0,.2);
-    color: #fff;
+    color: #9bff60;
     border-radius: 10px;
     padding: 30px 40px;
 }
+
+.wrapper .brand-icon {
+    font-size: 13px;
+    text-align: center;
+    margin: 13px 0;
+}
+
+/*Splash Screen*/
+
 
 .wrapper h1 {
     font-size: 36px;
@@ -90,14 +106,14 @@ body {
 .wrapper .btn {
     width: 100%;
     height: 45px;
-    background-color: #fff;
+    background-color: #9bff60;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0,.1);
     cursor: pointer;
     font-size: 16px;
-    color: #333;
+    color: #821f96;
     font-weight: 600;
 }
 
