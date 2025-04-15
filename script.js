@@ -29,3 +29,12 @@
         const overlay = document.getElementById("story-overlay");
         if (overlay) overlay.remove();
     }
+    function toggleFollow(button) {
+        if (button.textContent === 'Follow') {
+          button.textContent = 'Unfollow';
+          button.style.backgroundColor = '#b30000'; 
+        } else {
+          button.textContent = 'Follow';
+          button.style.backgroundColor = '#6a0dad'; 
+        }
+      }
