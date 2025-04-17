@@ -171,7 +171,7 @@ gameButton.addEventListener('click', function(e) {
         audio.play();
         setTimeout(() => {
             // change to homescreen file location
-            window.location.href = "following.html";
+            window.location.href = "index.html";
           }, 2000)
     }
     
