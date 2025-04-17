@@ -340,10 +340,6 @@ nav a:hover {
     flex-direction: column;
     gap: 15px;
     border-left: 1px solid #444;
-    overflow-y: auto;
-    position: sticky;
-    top: 0;
-    height: 100vh;
 }
 
 .right-sidebar h3 {

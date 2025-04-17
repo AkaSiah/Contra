@@ -38,32 +38,59 @@ function toggleFollow(gameName, button) {
   saveFollowedCommunities();
 }
 
-function renderCommunities() {
-  const container = document.getElementById("community-list");
-  container.innerHTML = "";
+let allGames = [];
+let currentIndex = 0;
+const itemsPerPage = 10;
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function loadNextCommunities() {
+  const container = document.getElementById("community-list");
+  const nextItems = allGames.slice(currentIndex, currentIndex + itemsPerPage);
+
+  nextItems.forEach(game => {
+    const isFollowed = followedCommunities.includes(game.title);
+    const div = document.createElement("div");
+    div.className = "community";
+    div.innerHTML = `
+      <span>${game.title}</span>
+      <button onclick="toggleFollow('${game.title}', this)" style="background-color: ${isFollowed ? '#b30000' : '#6a0dad'}">
+        ${isFollowed ? "Unfollow" : "Follow"}
+      </button>
+    `;
+    container.appendChild(div);
+  });
+
+  currentIndex += itemsPerPage;
+
+  // Hide button if no more items
+  if (currentIndex >= allGames.length) {
+    document.getElementById("load-more-btn").style.display = "none";
+  }
+}
+
+function renderCommunities() {
   fetch("games.json")
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
-      const selectedGames = data.slice(0, 10); // this is your `games`
-      selectedGames.forEach(game => {
-        const isFollowed = followedCommunities.includes(game.title);
-        const div = document.createElement("div");
-        div.className = "community";
-        div.innerHTML = `
-          <span>${game.title}</span>
-          <button onclick="toggleFollow('${game.title}', this)" style="background-color: ${isFollowed ? '#b30000' : '#6a0dad'}">
-            ${isFollowed ? "Unfollow" : "Follow"}
-          </button>
-        `;
-        container.appendChild(div);
-      });
+      allGames = shuffleArray(data);
+      currentIndex = 0;
+      document.getElementById("community-list").innerHTML = "";
+      document.getElementById("load-more-btn").style.display = "block";
+      loadNextCommunities();
     })
-    .catch(error => {
-      console.error("Failed to fetch games:", error);
-      container.innerHTML = "<p>Failed to load communities.</p>";
+    .catch(err => {
+      console.error("Failed to fetch games:", err);
     });
 }
+
+document.getElementById("load-more-btn").addEventListener("click", loadNextCommunities);
 
 // Run on page load
 renderCommunities();
