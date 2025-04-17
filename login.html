@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +26,47 @@
             </div>
             
 
-            <div class="remember-forgot">
-                <label><input type="checkbox">Remember me</label>
-                <a href="#">Forgot password?</a>
+    <div class="page-layout">
+        <nav>
+            <a href="index.html"><i class='bx bx-home'></i> Home</a>
+            <a href="following.html"><i class='bx bx-user'></i> Following</a>
+            <a href="favourites.html"><i class='bx bx-heart'></i> Favourites</a>
+            <a href="login.html"><i class='bx bx-log-out'></i> Logout</a>
+        </nav>
+
+        <div class="main-content">
+            <header>Welcome to Contra</header>
+            <h2>TOP CLIPS TODAY</h2>
+            <div class="story-bar">
+                <div class="story" onclick="playStory('videos/videoplayback5.mp4')">
+                    <img src="https://wallpapers.com/images/high/cool-apex-legends-1920-x-1080-yhimu77b15dt8n8i.webp" alt="Story 1">
+                    <p>Apex legends</p>
+                </div>
+                <div class="story" onclick="playStory('videos/videoplayback4.mp4')">
+                    <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/the-tarnished-from-elden-ring-with-bosses.jpg?q=70&fit=crop&w=1140&h=&dpr=1" alt="Story 2">
+                    <p>Elden Ring</p>
+                </div>
+                <div class="story" onclick="playStory('videos/videoplayback3.mp4')">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/5/50/RyuStreetFighterTwoHadoken.png" alt="Story 3">
+                    <p>streetfighter</p>
+                </div>
+                <div class="story" onclick="playStory('videos/videoplayback2.mp4')">
+                    <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn2.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcTxK0oTUesNAMGQQ32ZaA7xrmJ8MdGkQgkG94fX6m6Xksu1hEVR&psig=AOvVaw2iqkcA2xrR1wysivr1yWfi&ust=1744827825330000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCNjNlarU2owDFQAAAAAdAAAAABAE" alt="Story 4">
+                    <p>Brawlhalla</p>
+                </div>
+                <div class="story" onclick="playStory('videos/videoplayback.mp4')">
+                    <img src="https://cdnb.artstation.com/p/assets/images/images/063/070/369/large/hoshino-rin-neon-refined-cropped.jpg?1684653965" alt="Story 5">
+                    <p>valorant clip</p>
+                </div>
             </div>
+            <section class="tweet-box">
+                <textarea placeholder="What's happening?"></textarea>
+                <button>Post</button>
+              </section>
+              <section class="feed">
+                <!-- Tweets will be rendered here -->
+              </section>
+        </div>
 
             <button type="submit" class="btn">Log In</button>
             <audio id="WelcomeAudio" src='/Audios/Final Girl - Jeremy Blake.mp3'></audio>
