@@ -278,5 +278,105 @@ renderCommunities();
           saveTweets();
           renderTweets(tweets);
         });
-      
+
+        document.addEventListener("DOMContentLoaded", () => {
+          const favoriteTweetContainer = document.getElementById("favourite-tweets");
         
+          if (favoriteTweetContainer) {
+            const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            const tweets = JSON.parse(localStorage.getItem("tweets")) || [];
+        
+            function renderFavoriteTweets() {
+              favoriteTweetContainer.innerHTML = "";
+        
+              const favTweets = tweets.filter(tweet => favorites.includes(tweet.id));
+        
+              if (favTweets.length === 0) {
+                favoriteTweetContainer.innerHTML = "<p>No favourites yet.</p>";
+                return;
+              }
+        
+              favTweets.forEach(tweet => {
+                const tweetDiv = document.createElement("div");
+                tweetDiv.className = "tweet";
+        
+                const commentsHtml = (tweet.comments || [])
+                  .map(comment => `
+                    <div class="comment">
+                      <strong>${comment.name}</strong> <span>@${comment.screen_name}</span>: ${comment.text}
+                    </div>
+                  `).join("");
+        
+                tweetDiv.innerHTML = `
+                  <div class="tweet-header">
+                    <img src="${tweet.profile_image_url}" width="32" height="32" class="tweet-avatar">
+                    <strong>${tweet.name}</strong> <span>@${tweet.screen_name}</span> · <span>${new Date(tweet.timestamp).toLocaleString()}</span>
+                  </div>
+                  <p>${tweet.text}</p>
+                  <div class="tweet-actions">
+                    <button onclick="toggleFavorite('${tweet.id}')">💖 Unfavourite</button>
+                  </div>
+                  <div class="comments">${commentsHtml}</div>
+                `;
+                favoriteTweetContainer.appendChild(tweetDiv);
+              });
+            }
+        
+            window.toggleFavorite = function(id) {
+              let favs = JSON.parse(localStorage.getItem("favorites")) || [];
+              if (favs.includes(id)) {
+                favs = favs.filter(f => f !== id);
+              } else {
+                favs.push(id);
+              }
+              localStorage.setItem("favorites", JSON.stringify(favs));
+              renderFavoriteTweets();
+            }
+        
+            renderFavoriteTweets();
+          }
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+          renderFollowedCommunities();
+        });
+        
+        function renderFollowedCommunities() {
+          const container = document.getElementById("followers-list");
+          container.innerHTML = "";
+        
+          const followed = JSON.parse(localStorage.getItem("followedCommunities")) || [];
+        
+          fetch("games.json")
+            .then(res => res.json())
+            .then(data => {
+              const followedData = data.filter(game => followed.includes(game.title));
+        
+              if (followedData.length === 0) {
+                container.innerHTML = "<p>You haven't followed any communities yet.</p>";
+                return;
+              }
+        
+              followedData.forEach(game => {
+                const div = document.createElement("div");
+                div.className = "community-card";
+                div.innerHTML = `
+                  <strong>${game.title}</strong>
+                  <button class="unfollow-btn" onclick="unfollowCommunity('${game.title}')">Unfollow</button>
+                `;
+                container.appendChild(div);
+              });
+            })
+            .catch(err => {
+              console.error("Failed to load followed communities:", err);
+              container.innerHTML = "<p>Failed to load followed communities.</p>";
+            });
+        }
+        
+        function unfollowCommunity(title) {
+          let followed = JSON.parse(localStorage.getItem("followedCommunities")) || [];
+          followed = followed.filter(name => name !== title);
+          localStorage.setItem("followedCommunities", JSON.stringify(followed));
+          renderFollowedCommunities();
+        }
+        
+      

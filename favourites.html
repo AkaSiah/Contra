@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contra | Favourites</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="page-layout">
+    <nav>
+      <a href="index.html"><i class='bx bx-home'></i> Home</a>
+      <a href="following.html"><i class='bx bx-user'></i> Following</a>
+      <a href="favourites.html" class="active"><i class='bx bx-heart'></i> Favourites</a>
+      <a href="login.html"><i class='bx bx-log-out'></i> Logout</a>
+    </nav>
+
+    <div class="main-content">
+      <header>💖 Your Favourite Posts</header>
+
+      <section class="feed" id="favourite-tweets">
+        
+      </section>
+    </div>
+
+    <aside class="right-sidebar">
+      <h3>Suggested Communities</h3>
+      <div id="community-list"></div>
+      <button id="load-more-btn" style="margin-top: 10px;">Load More</button>
+    </aside>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

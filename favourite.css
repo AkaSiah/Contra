@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f9f9f9;
+  }
+  
+  h1 {
+    color: #6a0dad;
+  }
+  
+  .tweet {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .tweet-header {
+    margin-bottom: 10px;
+  }
+  
+  .tweet-avatar {
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  
+  .tweet-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  .followers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  
