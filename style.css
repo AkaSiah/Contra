@@ -19,11 +19,6 @@ body {
     
 }
 
-header {
-    font-size: 36px;
-    color: #9bff60;
-    
-}
 
 .wrapper {
     width: 420px;
@@ -41,8 +36,6 @@ header {
     text-align: center;
     margin: 13px 0;
 }
-
-/*Splash Screen*/
 
 
 .wrapper h1 {

@@ -11,21 +11,27 @@ document.getElementById("login-form").addEventListener('submit', function (e) {
   e.preventDefault(); 
   
   const password = document.getElementById("login-password").value;
-  const email = document.getElementById("login-email").value;
+  const username = document.getElementById("login-username").value;
 
   const users = getUsers();
 
-  if (users[email] && users[email].pass === password) {
+  if (users[username] && users[username].password === password) {
     
+    if(!localStorage.getItem("currentUser", username)) {
+      localStorage.setItem("currentUser", username);
+    }
+
     const audio = document.getElementById('WelcomeAudio');
     audio.play();
     setTimeout(() => {
-        window.location.href = "index.html";
+        window.location.href = "quary.html";
+  
     }, 2000)
     
-    localStorage.setItem("loggedInUser", email);
+    
+
   } else {
-    alert("Invalid email or password.");
+    alert("Invalid username or password.");
   }  
   
   
