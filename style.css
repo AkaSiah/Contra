@@ -340,6 +340,10 @@ nav a:hover {
     flex-direction: column;
     gap: 15px;
     border-left: 1px solid #444;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    height: 100vh;
 }
 
 .right-sidebar h3 {
@@ -375,4 +379,133 @@ nav a:hover {
 
 .community button:hover {
     background-color: #8b2de3;
+}
+
+.tweet-box {
+    background: #2e2e2e;
+    padding: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    gap: 15px;
+    border-radius: 12px;
+    align-items: flex-start;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    border-left: 4px solid #6a0dad;
+}
+
+.tweet-box textarea {
+    flex: 1;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    height: 80px;
+    padding: 12px;
+    background-color: #1a1a1a;
+    color: #fff;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+}
+
+.tweet-box button {
+    background: #c084fc;
+    color: #1a1a1a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.tweet-box button:hover {
+    background: #a855f7;
+}
+
+/* TWEET DISPLAY STYLES */
+
+.tweet {
+    background: #1a1a1a;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    border-left: 4px solid #6a0dad;
+}
+
+.tweet-content h4 {
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.tweet-content span {
+    color: #888;
+    font-size: 14px;
+}
+
+.tweet-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+.tweet-buttons button {
+    background: none;
+    border: none;
+    color: #c084fc;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+}
+
+.tweet-buttons button:hover {
+    color: #fff;
+}
+
+.tweet-buttons .liked {
+    color: #e0245e;
+    font-weight: bold;
+}
+
+/* Edit/Delete Buttons */
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    color: #c084fc;
+}
+
+/* Comments */
+.comment {
+    padding: 8px 12px;
+    margin-top: 10px;
+    border-left: 3px solid #6a0dad;
+    background: #2d033b;
+    color: #fff;
+    font-size: 0.9em;
+    border-radius: 6px;
+}
+
+.comment-box textarea {
+    margin-top: 8px;
+    padding: 10px;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    resize: none;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
 }

@@ -19,7 +19,7 @@
         </nav>
 
         <div class="main-content">
-            <header>Welcome to the Contra</header>
+            <header>Welcome to Contra</header>
             <h2>TOP CLIPS TODAY</h2>
             <div class="story-bar">
                 <div class="story" onclick="playStory('videos/videoplayback5.mp4')">
@@ -43,36 +43,21 @@
                     <p>valorant clip</p>
                 </div>
             </div>
+            <section class="tweet-box">
+                <textarea placeholder="What's happening?"></textarea>
+                <button>Post</button>
+              </section>
+              <section class="feed">
+                <!-- Tweets will be rendered here -->
+              </section>
         </div>
+
+        
 
         <aside class="right-sidebar">
             <h3>Suggested Communities</h3>
-        
-            <div class="community">
-                <span>Apex Legends</span>
-                <button onclick="toggleFollow(this)">Follow</button>
-              </div>
-              <div class="community">
-                <span>Elden Ring</span>
-                <button onclick="toggleFollow(this)">Follow</button>
-              </div>
-              <div class="community">
-                <span>Valorant</span>
-                <button onclick="toggleFollow(this)">Follow</button>
-              </div>
-              <div class="community">
-                <span>Brawlhalla</span>
-                <button onclick="toggleFollow(this)">Follow</button>
-              </div>
-              <div class="community">
-                <span>Street Fighter</span>
-                <button onclick="toggleFollow(this)">Follow</button>
-              </div>
-              <div class="community">
-                <span>League Of Legends</span>
-                <button onclick="toggleFollow(this)">Follow</button>
-              </div>
-        </aside>
+            <div id="community-list"></div>
+          </aside>
     </div>
 
     <script src="script.js"></script>
