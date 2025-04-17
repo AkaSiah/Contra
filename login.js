@@ -24,7 +24,7 @@ document.getElementById("login-form").addEventListener('submit', function (e) {
     const audio = document.getElementById('WelcomeAudio');
     audio.play();
     setTimeout(() => {
-        window.location.href = "quary.html";
+        window.location.href = "index.html";
   
     }, 2000)
     
