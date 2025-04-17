@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Contra</title>
+</head>
+<body>
+    <div class="splash">
+        <h1 class="fade-in">Welcome To <i class="fa-solid fa-gamepad"> Contra</i></h1>    
+    </div>
+    <nav class="nav-bar">
+        <div>
+            <h1><i class="fa-solid fa-gamepad"></i> <span id="welcome-name"></span></h1>
+        </div>
+    </nav>
+    <div id="transition-screen"></div>
+    
+    <div class="container-wrapper">
+        <div class="container">
+            <div class="slide">
+                <div class="item" style="background-image: url(./Images/PlayStation.jpg);">
+                    <div class="content">
+                        <div class="name">PlayStation</div>
+                        <button class="console-btn" value="PlayStation" href="#section-1">PICK</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(./Images/XBox.jpg);">
+                    <div class="content">
+                        <div class="name">XBOX</div>
+                        <button class="console-btn" value="XBOX" href="#section-1">PICK</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(./Images/Nintendo-Switch-Logo.png);">
+                    <div class="content">
+                        <div class="name">Nintendo</div>
+                        <button class="console-btn" value="Nintendo" href="#section-1">PICK</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(./Images/PC.jpg);">
+                    <div class="content">
+                        <div class="name">PC</div>
+                        <button class="console-btn" value="PC" href="#section-1">PICK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+    
+    <section id="section-1" class="step-section">
+        <div class="sec-container1">
+            <div class="sec-slide1">
+                <div class="sec-item" style="background-image: url(./Images/Action.jpg);">
+                    <div class="sec-content1">
+                        <div class="sec-name1">Action-Adventure</div>
+                        <button class="genre-btn" value="Action-Adventure" href="#section-2"> <i class="fa-solid fa-gamepad"></i></button>
+                    </div>
+                </div>
+                <div class="sec-item" style="background-image: url(./Images/Horror.png);">
+                    <div class="sec-content1">
+                        <div class="sec-name1">Horror</div>
+                        <button class="genre-btn" value="Horror" href="#section-2"> <i class="fa-solid fa-gamepad"></i></button>
+                    </div>         
+                </div>
+                <div class="sec-item" style="background-image: url(./Images/Platformer.jpg);">
+                    <div class="sec-content1">
+                        <div class="sec-name1">Platformer</div>
+                        <button class="genre-btn" value="Platformer" href="#section-2"> <i class="fa-solid fa-gamepad"></i></button>
+                    </div>             
+                </div>
+                <div class="sec-item" style="background-image: url(./Images/RPG.jpg);">
+                    <div class="sec-content1">
+                        <div class="sec-name1">RPG</div>
+                        <button class="genre-btn" value="RPG" href="#section-2"> <i class="fa-solid fa-gamepad"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        
+        <div class="sec-button">
+            <button class="slider1-btn prev-slide"><i class="fa-solid fa-backward"></i></button>
+            <button class="slider1-btn next-slide"><i class="fa-solid fa-forward"></i></button>
+        </div>
+    </section>
+
+    <section id="section-2" class="step-section">
+        <div class="sec-container2">
+            <div class="sec-slide2">
+                <div class="sec-item2" style="background-image: url(./Images/NathanDrake.jpg);">
+                    <div class="sec-content2">
+                        <div class="sec-name2">Nathan Drake</div>
+                        <button class="profile-btn" value="NathanDrake" href="#section-3"> <i class="fa-solid fa-gamepad"></i></button>
+                    </div>
+                </div>
+                <div class="sec-item2" style="background-image: url(./Images/MasterChief.jpg);">
+                    <div class="sec-content2">
+                        <div class="sec-name2">Master Chief</div>
+                        <button class="profile-btn" value="MasterChief href="#section-3"> <i class="fa-solid fa-gamepad"></i></button>
+                    </div>         
+                </div>
+                <div class="sec-item2" style="background-image: url(./Images/Mario.jpg);">
+                    <div class="sec-content2">
+                        <div class="sec-name2">Mario</div>
+                        <button class="profile-btn" value="Mario" href="#section-3"> <i class="fa-solid fa-gamepad"></i></button>
+                    </div>             
+                </div>
+                <div class="sec-item2" style="background-image: url(./Images/Jonesy2.jpg);">
+                    <div class="sec-content2">
+                        <div class="sec-name2">Jonesy</div>
+                        <button class="profile-btn" value="Jonesy" href="#section-3"> <i class="fa-solid fa-gamepad"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        
+        <div class="sec-button2">
+            <button class="slider1-btn prev2-slide"><i class="fa-solid fa-backward"></i></button>
+            <button class="slider1-btn next2-slide"><i class="fa-solid fa-forward"></i></button>
+        </div>
+    </section>
+
+    <section id="section-3" class="step-section">
+        <div class="sec-container3">
+            <div class="sec-slide3">
+                <div class="sec-item3" style="background-image: url(./Images/gaming.jpg);">
+                    <div class="sec-content3">
+                        <div class="input-box">
+                            <input type="text" id="game" placeholder="Game.." required>
+                        </div>
+                        <button class="game-btn" href="#section-4"> <i class="fa-solid fa-gamepad"></i></button>
+                    </div>
+                </div>
+        </div>    
+        
+    </section>
+    <section id="section-4" class="step-section">
+        <div class="sec-container4">
+            <div class="sec-slide4">
+                <div class="sec-item4" style="background-image: url(./Images/PurpalHaze.png);">
+                    <div class="sec-content4">
+                        <div class="sec-name4">Enjoy the <span style="color: #9bff60;"><i class="fa-solid fa-gamepad"></i>Contra</span> Experience</div>
+                    </div>
+                </div>
+        </div>
+    </section>
+    <audio id="WelcomeAudio" src='/Audios/Final Girl - Jeremy Blake.mp3'></audio>
+    <div class="button">
+        <button class="prev"><i class="fa-solid fa-backward"></i></button>
+        <button class="next"><i class="fa-solid fa-forward"></i></button>
+    </div>
+
+    <script src="quary.js"></script>
+</body>
+</html>
