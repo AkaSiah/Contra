@@ -108,7 +108,7 @@ renderCommunities();
       const currentUser = {
         name: clients[currentClient].name,
         screen_name: clients[currentClient].email,
-        profile_image_url: "https://randomuser.me/api/portraits/lego/1.jpg"
+        profile_image_url: clients[currentClient].preference.profile
       };
       
       const tweetInput = document.querySelector("textarea");
@@ -143,7 +143,7 @@ renderCommunities();
             .map(
               comment => `
               <div class="comment">
-                <strong>${comment.name}</strong> <span>@${comment.screen_name}</span>: ${comment.text}
+                <strong>${comment.name}</strong> <span>${comment.screen_name}</span>: ${comment.text}
               </div>`
             )
             .join("");
@@ -151,7 +151,7 @@ renderCommunities();
           tweetDiv.innerHTML = `
             <div class="tweet-header">
               <img src="${tweet.profile_image_url}" width="32" height="32" style="border-radius:50%;vertical-align:middle;margin-right:8px;">
-              <strong>${tweet.name}</strong> <span>@${tweet.screen_name}</span> · <span>${new Date(tweet.timestamp).toLocaleString()}</span>
+              <strong>${tweet.name}</strong> <span>${tweet.screen_name}</span> · <span>${new Date(tweet.timestamp).toLocaleString()}</span>
             </div>
             <p>${tweet.text}</p>
             <div class="tweet-actions">
