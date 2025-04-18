@@ -92,11 +92,22 @@ function renderCommunities() {
 
 document.getElementById("load-more-btn").addEventListener("click", loadNextCommunities);
 
+function getUsers() {
+  return JSON.parse(localStorage.getItem("users")) || {};
+}
+
+function saveUsers(users) {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+const clients = getUsers();
+const currentClient = localStorage.getItem("currentUser");
+
 // Run on page load
 renderCommunities();
       const currentUser = {
-        name: "You",
-        screen_name: "your_username",
+        name: clients[currentClient].name,
+        screen_name: clients[currentClient].email,
         profile_image_url: "https://randomuser.me/api/portraits/lego/1.jpg"
       };
       
@@ -186,6 +197,7 @@ renderCommunities();
         saveTweets();
         renderTweets(tweets);
       }
+      // render tweets outside of function
       
       function showAll() {
         renderTweets(tweets);
@@ -390,3 +402,4 @@ renderCommunities();
             executeScripts();
           }
         }
+        renderTweets(tweets);
