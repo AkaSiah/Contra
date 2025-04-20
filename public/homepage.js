@@ -93,16 +93,6 @@ function renderCommunities() {
 
 document.getElementById("load-more-btn").addEventListener("click", loadNextCommunities);
 
-function getUsers() {
-  return JSON.parse(localStorage.getItem("users")) || {};
-}
-
-function saveUsers(users) {
-  localStorage.setItem("users", JSON.stringify(users));
-}
-
-const clients = getUsers();
-const currentClient = localStorage.getItem("currentUser");
 
 // Run on page load
 renderCommunities();

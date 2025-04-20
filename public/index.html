@@ -6,6 +6,23 @@
     <link rel="stylesheet" href="homepagestyles.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <title>Contra</title>
+    <script>
+        function getUsers() {
+  return JSON.parse(localStorage.getItem("users")) || {};
+}
+
+function saveUsers(users) {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+const clients = getUsers();
+const currentClient = localStorage.getItem("currentUser");
+        // Redirect to signup.html if the user is not logged in
+        const currentUser = localStorage.getItem('currentUser');
+        if (!currentUser) {
+          window.location.href = 'signup.html';
+        }
+      </script>
 </head>
 <body>
 
