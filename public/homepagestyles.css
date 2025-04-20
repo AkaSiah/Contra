@@ -277,19 +277,26 @@ nav a:hover {
 }
 
 .tweet-box button {
-    background: #c084fc;
-    color: #1a1a1a;
+    background: none;
     border: none;
-    padding: 10px 20px;
+    padding: 0;
     border-radius: 25px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
+    transition: transform 0.2s ease;
+    width: 50px; /* control the size here */
+    height: 50px;
+    overflow: hidden;
+  }
+  
+  .tweet-box button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 25px;
+  }
 
-.tweet-box button:hover {
-    background: #a855f7;
-}
+
 
 /* TWEET DISPLAY STYLES */
 
@@ -433,3 +440,26 @@ nav a:hover {
   background-color: #a259ff;
   color: white;
 }
+.x-post-btn img {
+    height: 24px;
+    width: 24px;
+    object-fit: contain; 
+  }
+  #load-more-btn {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    width: 100%;
+    background-color: #6a0dad;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  #load-more-btn:hover {
+    background-color: #e0e0e0;
+  }

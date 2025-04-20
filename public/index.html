@@ -12,9 +12,7 @@
     <div class="page-layout">
         <nav>
             <a href="index.html"><i class='bx bx-home'></i> Home</a>
-            <a href="following.html"><i class='bx bx-user'></i> Following</a>
-            <a href="favourites.html"><i class='bx bx-heart'></i> Favourites</a>
-            <button id="twitter-login">Login with Twitter</button>
+            <a href="#" id="twitter-login"><i class='bx bxl-twitter'></i> Login with Twitter</a>
             <a href="login.html"><i class='bx bx-log-out'></i> Logout</a>
         </nav>
 
@@ -40,12 +38,14 @@
                 </div>
                 <div class="story" onclick="playStory('videos/videoplayback.mp4')">
                     <img src="https://cdnb.artstation.com/p/assets/images/images/063/070/369/large/hoshino-rin-neon-refined-cropped.jpg?1684653965" alt="Story 5">
-                    <p>valorant clip</p>
+                    <p>valorant</p>
                 </div>
             </div>
             <section class="tweet-box">
   <textarea id="post-input" placeholder="What's happening?"></textarea>
-  <button id="post-btn">Post</button>
+  <button id="post-btn" class="x-post-btn">
+    <img src="https://i.pinimg.com/736x/ea/22/47/ea22471b6c735952c6c428caf64fe990.jpg" alt="Post" />
+  </button>
 </section>
               <section class="feed">
                 <div id="posts"></div>
@@ -155,7 +155,7 @@
         <aside class="right-sidebar">
             <h3>Suggested Communities</h3>
             <div id="community-list"></div>
-            <button id="load-more-btn" style="margin-top: 10px;">Load More</button>
+            <button id="load-more-btn">Load More</button>
           </aside>
     </div>
 
