@@ -20,24 +20,56 @@
     <div class="main-content">
       <header>💖 Your Favourite Posts</header>
 
-      <section class="feed" id="bookmarked-tweets">
-        
+      <section class="feed" id="favorite-feed">
+        <p>Loading your favorite posts...</p>
       </section>
-      <script src="homepage.js"></script>
-      <script src="twitterpage.js"></script>
+
+      <script type="module" src="homepage.js"></script>
       <script>
-        const bookmarks = JSON.parse(localStorage.getItem('twitterBookmarks') || '[]');
-        const container = document.getElementById('bookmarked-tweets');
-      
-        if (bookmarks.length === 0) {
-          container.innerHTML = '<p>No bookmarks yet.</p>';
-        } else {
-          bookmarks.forEach(tweet => {
-            const el = document.createElement('div');
-            el.innerHTML = `<p>${tweet.text}</p><hr>`;
-            container.appendChild(el);
+
+        async function fetchAndDisplayFavorites() {
+          const response = await fetch('http://localhost:3000/api/getPosts');
+          const posts = await response.json();
+
+          const favorites = JSON.parse(localStorage.getItem('favoritedTweets') || '{}');
+          const feedContainer = document.getElementById('favorite-feed');
+          feedContainer.innerHTML = '';
+
+          const favoritePosts = posts.filter(post => {
+            const tweetId = safeBtoa(post.username + post.content + post.created_at);
+            return favorites[tweetId];
+          });
+
+          if (favoritePosts.length === 0) {
+            feedContainer.innerHTML = '<p>No favorite posts yet.</p>';
+            return;
+          }
+
+          favoritePosts.forEach(tweet => {
+            const tweetId = safeBtoa(tweet.username + tweet.content + tweet.created_at);
+            const tweetElement = document.createElement('div');
+            tweetElement.classList.add('tweet');
+
+            tweetElement.innerHTML = `
+              <div class="tweet-header">
+                <img src="${tweet.profile_image_url}" alt="${tweet.username}" class="profile-image">
+                <strong>@${tweet.username}</strong>
+              </div>
+              <p>${tweet.content}</p>
+              <small>${new Date(tweet.created_at).toLocaleString()}</small>
+              <div class="tweet-actions">
+                <i class='bx bxs-heart favorite-icon' 
+                   data-id="${tweetId}" 
+                   style="cursor: pointer; margin-top: 5px;"></i>
+              </div>
+              <hr>
+            `;
+
+            feedContainer.appendChild(tweetElement);
           });
         }
+
+        fetchAndDisplayFavorites();
       </script>
     </div>
 
@@ -48,7 +80,6 @@
     </aside>
   </div>
 
-
-  <script src="homepage.js"></script>
+  <script src="suggestedcommunities.js"></script>
 </body>
 </html>

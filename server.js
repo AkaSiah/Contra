@@ -299,6 +299,34 @@ try {
   console.error('Error registering route:', error.message);
 }
 
+app.get('/api/getPosts', (req, res) => {
+  const mockTweets = [
+    {
+      id: '1',
+      username: 'IGN',
+      profile_image_url: 'https://upload.wikimedia.org/wikipedia/commons/4/49/IGN_Logo.svg',
+      content: "Just dropped our review of Elden Ring: Shadow of the Erdtree — it's brutal, beautiful, and bold. 🌌🔥",
+      created_at: '2025-04-19T10:05:00Z',
+    },
+    {
+      id: '2',
+      username: 'PlayStation',
+      profile_image_url: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Playstation_logo_colour.svg',
+      content: "The PS5 Pro is real and it's coming sooner than you think 👀 Stay tuned.",
+      created_at: '2025-04-19T09:45:00Z',
+    },
+    {
+      id: '3',
+      username: 'Kotaku',
+      profile_image_url: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Kotaku_logo.svg',
+      content: "Tears of the Kingdom modders are getting WILD. Someone turned Link into Goku.",
+      created_at: '2025-04-19T08:30:00Z',
+    },
+  ];
+
+  res.json(mockTweets); // Return mock data as JSON
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

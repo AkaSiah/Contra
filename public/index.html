@@ -50,7 +50,7 @@
               <section class="feed">
                 <div id="posts"></div>
               </section>
-              <script src="homepage.js"></script>
+              <script type="module" src="homepage.js"></script>
               <script src="twitterpage.js"></script>
               
               
@@ -67,31 +67,25 @@
                 let lastFetchTime = 0;
 
                 async function fetchPosts() {
-                  try {
-                    const response = await fetch('http://localhost:3000/api/twitter/tweets');
-                    if (!response.ok) {
-                      if (response.status === 429) {
-                        const resetTime = response.headers.get('x-rate-limit-reset');
-                        const waitTime = resetTime * 1000 - Date.now();
-                        console.log(`Rate limit exceeded. Retrying in ${waitTime / 1000} seconds...`);
-                        setTimeout(fetchPosts, waitTime);
-                        return;
-                      }
-                      throw new Error('Failed to fetch tweets');
+                    const currentTime = Date.now();
+                    if (cachedTweets && (currentTime - lastFetchTime < 60000)) { // 1 minute cache
+                        return cachedTweets;
                     }
-                
-                    const data = await response.json();
-                    renderPosts(data.tweets);
-                  } catch (err) {
-                    console.error('Error fetching tweets:', err);
-                  }
-                }
               
-                // Fetch posts when the page loads
-                document.addEventListener('DOMContentLoaded', () => {
-                setTimeout(fetchPosts, 2000); // Delay fetch to reduce pressure
-                });
-                
+                    try {
+                        const response = await fetch('http://localhost:3000/api/getPosts');
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch posts');
+                        }
+              
+                        const posts = await response.json();
+                        cachedTweets = posts;
+                        lastFetchTime = currentTime;
+                        displayPosts(posts);
+                    } catch (error) {
+                        console.error('Error fetching posts:', error);
+                    }
+                }
               
                 // Function to post a new tweet
                 async function postTweet() {

@@ -1,5 +1,4 @@
-
-    function playStory(videoSrc) {
+function playStory(videoSrc) {
         const overlay = document.createElement("div");
         overlay.id = "story-overlay";
         overlay.innerHTML = `
@@ -141,6 +140,90 @@ renderCommunities();
           renderFollowedCommunities();
         }
 
-        
 
-        
+        import mockTweets from './mocktweets.js'; // Import mock tweets
+
+        function safeBtoa(str) {
+          return btoa(unescape(encodeURIComponent(str)));
+        }
+
+        // Fetch posts from the local API or mock data
+        async function fetchPosts() {
+          try {
+            const response = await fetch('http://localhost:3000/api/getPosts');
+            if (!response.ok) {
+              throw new Error('Failed to fetch posts');
+            }
+            const posts = await response.json();
+            renderPosts(posts); // Render the posts
+          } catch (error) {
+            console.error('Error fetching posts:', error);
+            // Fallback to mock data if API fails
+            renderPosts(mockTweets);
+          }
+        }
+
+        // Render posts on the homepage
+        function renderPosts(tweets) {
+          const postsContainer = document.getElementById('posts');
+          if (!postsContainer) {
+            console.error('Error: #posts element not found in DOM');
+            return;
+          }
+
+          // Clear previous content
+          postsContainer.innerHTML = '';
+
+          // Get favorited tweets from localStorage
+          const favorites = JSON.parse(localStorage.getItem('favoritedTweets') || '{}');
+
+          // Render each tweet
+          tweets.forEach(tweet => {
+            const tweetId = safeBtoa(tweet.username + tweet.content + tweet.created_at); // Use safeBtoa
+            const isFavorited = favorites[tweetId];
+
+            const tweetElement = document.createElement('div');
+            tweetElement.classList.add('tweet');
+
+            tweetElement.innerHTML = `
+              <div class="tweet-header">
+                <img src="${tweet.profile_image_url}" alt="${tweet.username}" class="profile-image">
+                <strong>@${tweet.username}</strong>
+              </div>
+              <p>${tweet.content}</p>
+              <small>${new Date(tweet.created_at).toLocaleString()}</small>
+              <div class="tweet-actions">
+                <i class='bx ${isFavorited ? "bxs-heart" : "bx-heart"} favorite-icon' 
+                   data-id="${tweetId}" 
+                   style="cursor: pointer; margin-top: 5px;"></i>
+              </div>
+              <hr>
+            `;
+
+            postsContainer.appendChild(tweetElement);
+          });
+
+          // Add event listeners for favoriting/unfavoriting
+          document.querySelectorAll('.favorite-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+              const tweetId = icon.getAttribute('data-id');
+              const favorites = JSON.parse(localStorage.getItem('favoritedTweets') || '{}');
+
+              if (favorites[tweetId]) {
+                delete favorites[tweetId];
+              } else {
+                favorites[tweetId] = true;
+              }
+
+              localStorage.setItem('favoritedTweets', JSON.stringify(favorites));
+              renderPosts(tweets); // Re-render posts to update the favorite icon
+            });
+          });
+        }
+
+        // Fetch posts when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+          fetchPosts();
+        });
+
+
