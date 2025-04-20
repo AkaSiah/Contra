@@ -14,6 +14,7 @@
             <a href="index.html"><i class='bx bx-home'></i> Home</a>
             <a href="following.html"><i class='bx bx-user'></i> Following</a>
             <a href="favourites.html"><i class='bx bx-heart'></i> Favourites</a>
+            <button id="twitter-login">Login with Twitter</button>
             <a href="login.html"><i class='bx bx-log-out'></i> Logout</a>
         </nav>
 
@@ -43,12 +44,116 @@
                 </div>
             </div>
             <section class="tweet-box">
-                <textarea placeholder="What's happening?"></textarea>
-                <button>Post</button>
-              </section>
+  <textarea id="post-input" placeholder="What's happening?"></textarea>
+  <button id="post-btn">Post</button>
+</section>
               <section class="feed">
-                <!-- Tweets will be rendered here -->
+                <div id="posts"></div>
               </section>
+              <script src="homepage.js"></script>
+              <script src="twitterpage.js"></script>
+              
+              
+
+              <script>
+
+                document.getElementById('twitter-login').addEventListener('click', async () => {
+                const response = await fetch('http://localhost:3000/auth/twitter/init');
+                const { url } = await response.json();
+                 window.location.href = url;
+                });
+                // Function to fetch posts from the server
+                let cachedTweets = null;
+                let lastFetchTime = 0;
+
+                async function fetchPosts() {
+                  try {
+                    const response = await fetch('http://localhost:3000/api/twitter/tweets');
+                    if (!response.ok) {
+                      if (response.status === 429) {
+                        const resetTime = response.headers.get('x-rate-limit-reset');
+                        const waitTime = resetTime * 1000 - Date.now();
+                        console.log(`Rate limit exceeded. Retrying in ${waitTime / 1000} seconds...`);
+                        setTimeout(fetchPosts, waitTime);
+                        return;
+                      }
+                      throw new Error('Failed to fetch tweets');
+                    }
+                
+                    const data = await response.json();
+                    renderPosts(data.tweets);
+                  } catch (err) {
+                    console.error('Error fetching tweets:', err);
+                  }
+                }
+              
+                // Fetch posts when the page loads
+                document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(fetchPosts, 2000); // Delay fetch to reduce pressure
+                });
+                
+              
+                // Function to post a new tweet
+                async function postTweet() {
+                    const tweetText = document.getElementById('post-input').value;
+                    if (!tweetText.trim()) {
+                        alert('Tweet cannot be empty!');
+                        return;
+                    }
+              
+                    try {
+                        const response = await fetch('http://localhost:3000/api/postTweet', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ tweetText }),
+                        });
+              
+                        if (!response.ok) {
+                            throw new Error('Failed to post tweet');
+                        }
+              
+                        const newPost = await response.json();
+                        console.log('Tweet posted:', newPost);
+                        
+                        // Optionally, you can fetch the posts again after posting
+                        fetchPosts();
+                    } catch (error) {
+                        console.error('Error posting tweet:', error);
+                    }
+                }
+              
+                // Add event listener to the Post button
+                document.getElementById('post-btn').addEventListener('click', async () => {
+  const text = document.getElementById('post-input').value;
+
+  if (!text) return alert('Tweet cannot be empty');
+
+  try {
+    const response = await fetch('http://localhost:3000/api/postTweet', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ tweet: text })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert('Tweet posted to Twitter!');
+      document.getElementById('post-input').value = '';
+    } else {
+      console.error(data);
+      alert('Failed to post tweet');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Error connecting to server');
+  }
+});
+              </script>
         </div>
 
         
@@ -60,7 +165,7 @@
           </aside>
     </div>
 
-    <script src="homepage.js"></script>
+<script src="suggestedcommunities.js"></script>
 </body>
 
 </html>

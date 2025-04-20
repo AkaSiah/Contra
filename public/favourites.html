@@ -20,9 +20,25 @@
     <div class="main-content">
       <header>💖 Your Favourite Posts</header>
 
-      <section class="feed" id="favourite-tweets">
+      <section class="feed" id="bookmarked-tweets">
         
       </section>
+      <script src="homepage.js"></script>
+      <script src="twitterpage.js"></script>
+      <script>
+        const bookmarks = JSON.parse(localStorage.getItem('twitterBookmarks') || '[]');
+        const container = document.getElementById('bookmarked-tweets');
+      
+        if (bookmarks.length === 0) {
+          container.innerHTML = '<p>No bookmarks yet.</p>';
+        } else {
+          bookmarks.forEach(tweet => {
+            const el = document.createElement('div');
+            el.innerHTML = `<p>${tweet.text}</p><hr>`;
+            container.appendChild(el);
+          });
+        }
+      </script>
     </div>
 
     <aside class="right-sidebar">
