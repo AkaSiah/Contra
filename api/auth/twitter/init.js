@@ -1,28 +1,23 @@
-import { generateCodeChallenge, generateCodeVerifier } from '../../../utils/pkce';
-import { serialize } from 'cookie';
+import { generatePKCECodes } from "../../../utils/pkce";
 
 export default async function handler(req, res) {
-  const CLIENT_ID = process.env.TWITTER_CLIENT_ID;
-  const codeVerifier = generateCodeVerifier();
-  const state = Math.random().toString(36).substring(2);
+  const { codeChallenge, codeVerifier } = await generatePKCECodes();
 
-  const codeChallenge = await generateCodeChallenge(codeVerifier);
+  const state = crypto.randomUUID();
+  const url = new URL("https://twitter.com/i/oauth2/authorize");
+  url.searchParams.set("response_type", "code");
+  url.searchParams.set("client_id", process.env.TWITTER_CLIENT_ID);
+  url.searchParams.set("redirect_uri", process.env.TWITTER_REDIRECT_URI);
+  url.searchParams.set("scope", "tweet.read tweet.write users.read offline.access bookmark.read bookmark.write");
+  url.searchParams.set("state", state);
+  url.searchParams.set("code_challenge", codeChallenge);
+  url.searchParams.set("code_challenge_method", "S256");
 
-  // Set cookies for state and verifier
-  res.setHeader('Set-Cookie', [
-    serialize('twitter_state', state, { path: '/', httpOnly: true }),
-    serialize('code_verifier', codeVerifier, { path: '/', httpOnly: true })
+  // Set verifier in cookie (temporary session)
+  res.setHeader("Set-Cookie", [
+    `verifier=${codeVerifier}; Path=/; HttpOnly; Secure; SameSite=Lax`,
+    `state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax`,
   ]);
 
-  const params = new URLSearchParams({
-    response_type: 'code',
-    client_id: CLIENT_ID,
-    redirect_uri: 'https://contra-git-main-part-3-akasiahs-projects.vercel.app/api/auth/twitter/init',
-    scope: 'tweet.read tweet.write users.read bookmark.write',
-    state,
-    code_challenge: codeChallenge,
-    code_challenge_method: 'S256'
-  });
-
-  res.redirect(`https://twitter.com/i/oauth2/authorize?${params.toString()}`);
+  res.status(200).json({ url: url.toString() });
 }
