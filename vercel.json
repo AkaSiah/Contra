@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+      {
+        "source": "/auth/twitter",
+        "destination": "/api/auth/twitter/init"
+      },
+      {
+        "source": "/auth/twitter/callback",
+        "destination": "/api/auth/twitter/callback"
+      }
+    ]
+  }
