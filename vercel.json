@@ -1,7 +1,7 @@
 {
     "rewrites": [
       {
-        "source": "/auth/twitter",
+        "source": "/api/auth/twitter/init",
         "destination": "/api/auth/twitter/init"
       },
       {
