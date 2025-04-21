@@ -1,12 +1,6 @@
 {
-    "rewrites": [
-      {
-        "source": "/api/auth/twitter/init",
-        "destination": "/api/auth/twitter/init"
-      },
-      {
-        "source": "/auth/twitter/callback",
-        "destination": "/api/auth/twitter/callback"
-      }
+    "version": 2,
+    "builds": [
+      { "src": "api/**/*.js", "use": "@vercel/node" }
     ]
   }

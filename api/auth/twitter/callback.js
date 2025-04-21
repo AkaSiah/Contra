@@ -1,30 +1,19 @@
-import axios from 'axios';
-import { parse } from 'cookie';
-
 export default async function handler(req, res) {
-  const { code, state } = req.query;
-  const cookies = parse(req.headers.cookie || '');
+  const { code } = req.query;
+  const { default: fetch } = await import('node-fetch');
 
-  if (!code || !state || state !== cookies.twitter_state) {
-    return res.status(400).send('Invalid state or missing code');
-  }
-
-  const tokenResponse = await axios.post('https://api.twitter.com/2/oauth2/token', new URLSearchParams({
-    code,
-    grant_type: 'authorization_code',
-    client_id: process.env.TWITTER_CLIENT_ID,
-    redirect_uri: 'https://contra-5hfqdq6wa-akasiahs-projects.vercel.app/api/auth/twitter/callback',
-    code_verifier: cookies.code_verifier
-  }), {
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+  const response = await fetch('https://api.twitter.com/2/oauth2/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      code,
+      grant_type: 'authorization_code',
+      client_id: process.env.TWITTER_CLIENT_ID,
+      redirect_uri: process.env.TWITTER_REDIRECT_URI,
+      code_verifier: req.cookies.codeVerifier,
+    }),
   });
 
-  // Set access_token in a secure cookie
-  res.setHeader('Set-Cookie', serialize('access_token', tokenResponse.data.access_token, {
-    path: '/',
-    httpOnly: true,
-    secure: true
-  }));
-
-  res.redirect('/');
+  const data = await response.json();
+  res.status(200).json(data);
 }
