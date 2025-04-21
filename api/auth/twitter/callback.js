@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     code,
     grant_type: 'authorization_code',
     client_id: process.env.TWITTER_CLIENT_ID,
-    redirect_uri: 'https://your-deployment.vercel.app/api/auth/twitter/callback',
+    redirect_uri: 'https://contra-c0oo9svre-akasiahs-projects.vercel.app/api/auth/twitter/callback',
     code_verifier: cookies.code_verifier
   }), {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
