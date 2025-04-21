@@ -125,7 +125,7 @@ const basicAuth = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64'
       code,
       grant_type: 'authorization_code',
       client_id: process.env.TWITTER_CLIENT_ID,
-      redirect_uri: 'http://localhost:3000/auth/twitter/callback',
+      redirect_uri: '/api/auth/twitter/callback',
       code_verifier: codeVerifier,
     }), {
       headers: {
