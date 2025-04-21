@@ -85,7 +85,7 @@ const currentClient = localStorage.getItem("currentUser");
               <script>
 
                 document.getElementById('twitter-login').addEventListener('click', async () => {
-                const response = await fetch('http://localhost:3000/auth/twitter/init');
+                const response = await fetch('/api/auth/twitter/init');
                 const { url } = await response.json();
                  window.location.href = url;
                 });
@@ -100,7 +100,7 @@ const currentClient = localStorage.getItem("currentUser");
                     }
               
                     try {
-                        const response = await fetch('http://localhost:3000/api/getPosts');
+                        const response = await fetch('/api/getPosts');
                         if (!response.ok) {
                             throw new Error('Failed to fetch posts');
                         }
@@ -123,7 +123,7 @@ const currentClient = localStorage.getItem("currentUser");
                     }
               
                     try {
-                        const response = await fetch('http://localhost:3000/api/postTweet', {
+                        const response = await fetch('/api/postTweet', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ const currentClient = localStorage.getItem("currentUser");
   if (!text) return alert('Tweet cannot be empty');
 
   try {
-    const response = await fetch('http://localhost:3000/api/postTweet', {
+    const response = await fetch('/api/postTweet', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
