@@ -62,7 +62,7 @@ app.get('/auth/twitter/init', (req, res) => {
   const url = new URL('https://twitter.com/i/oauth2/authorize');
   url.searchParams.set('response_type', 'code');
   url.searchParams.set('client_id', process.env.TWITTER_CLIENT_ID);
-  url.searchParams.set('redirect_uri', 'http://localhost:3000/auth/twitter/callback');
+  url.searchParams.set('redirect_uri', '/api/auth/twitter/callback');
   url.searchParams.set('scope', 'tweet.read tweet.write users.read offline.access');
   url.searchParams.set('state', state);
   url.searchParams.set('code_challenge', codeChallenge);
