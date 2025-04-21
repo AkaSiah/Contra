@@ -16,7 +16,7 @@ body {
 
 
 header {
-    background: linear-gradient(90deg, #6a0dad, #000000);
+    background: linear-gradient(90deg, #2d033b,  #9bff60);
     padding: 20px;
     text-align: center;
     color: white;
@@ -32,7 +32,7 @@ nav {
 }
 
 nav a {
-    color: #c084fc;
+    color: #9bff60;
     text-decoration: none;
     margin: 0 20px;
     font-size: 1.1rem;
@@ -54,7 +54,7 @@ nav a:hover {
     padding: 20px;
     margin: 20px auto;
     max-width: 600px;
-    border-left: 6px solid #6a0dad;
+    border-left: 6px solid #821f96;
     box-shadow: 0 4px 10px rgba(0,0,0,0.6);
 }
 
@@ -97,7 +97,7 @@ footer {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    border: 3px solid #6a0dad;
+    border: 3px solid #9bff60;
     object-fit: cover;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     transition: transform 0.2s ease;
@@ -106,12 +106,14 @@ footer {
 
 .story img:hover {
     transform: scale(1.1);
+    border: 3px solid #821f96;
+    
 }
 
 .story p {
     margin-top: 8px;
     font-size: 0.85rem;
-    color: #c084fc;
+    color: #9bff60;
 }
 #story-overlay {
     position: fixed;
@@ -119,7 +121,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.9);
+    background:  #821f96;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,7 +171,7 @@ nav {
 nav a {
     display: flex;
     align-items: center;
-    color: #c084fc;
+    color: #9bff60;
     text-decoration: none;
     margin: 10px 0;
     font-size: 1.1rem;
@@ -206,7 +208,7 @@ nav a:hover {
 
 .right-sidebar {
     width: 250px;
-    background-color: #2d033b;
+    background-color:  #2d033b;
     padding: 20px;
     color: #fff;
     display: flex;
@@ -218,25 +220,26 @@ nav a:hover {
 .right-sidebar h3 {
     font-size: 1.1rem;
     margin-bottom: 10px;
-    color: #c084fc;
+    color: #9bff60;
 }
 
 .community {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #3a0c54;
+    
     padding: 8px 10px;
     border-radius: 8px;
 }
 
 .community span {
     font-size: 0.9rem;
-    color: #fff;
+    color: #9bff60;
+    font-weight: bold;
 }
 
 .community button {
-    background-color: #6a0dad;
+    background-color:#9bff60;
     border: none;
     color: #fff;
     padding: 5px 10px;
@@ -247,7 +250,7 @@ nav a:hover {
 }
 
 .community button:hover {
-    background-color: #8b2de3;
+    background-color: #9bff60;
 }
 
 .tweet-box {
@@ -259,7 +262,7 @@ nav a:hover {
     border-radius: 12px;
     align-items: flex-start;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-    border-left: 4px solid #6a0dad;
+    border-left: 4px solid #9bff60;
 }
 
 .tweet-box textarea {
@@ -277,26 +280,20 @@ nav a:hover {
 }
 
 .tweet-box button {
-    background: none;
+    background:  #9bff60;
+    color: #821f96;
     border: none;
-    padding: 0;
+    padding: 10px 20px;
     border-radius: 25px;
     cursor: pointer;
-    transition: transform 0.2s ease;
-    width: 50px; /* control the size here */
-    height: 50px;
-    overflow: hidden;
-  }
-  
-  .tweet-box button img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 25px;
-  }
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
 
-
+.tweet-box button:hover {
+    background-color: #821f96;;
+    color: #9bff60;
+}
 
 /* TWEET DISPLAY STYLES */
 
@@ -308,7 +305,7 @@ nav a:hover {
     margin-bottom: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    border-left: 4px solid #6a0dad;
+    border-left: 4px solid #9bff60;
 }
 
 .tweet-content h4 {
@@ -330,7 +327,7 @@ nav a:hover {
 .tweet-buttons button {
     background: none;
     border: none;
-    color: #c084fc;
+    color: #9bff60;
     cursor: pointer;
     font-size: 14px;
     padding: 5px;
@@ -345,7 +342,7 @@ nav a:hover {
 }
 
 .tweet-buttons .liked {
-    color: #e0245e;
+    color: #9bff60;
     font-weight: bold;
 }
 
@@ -363,7 +360,7 @@ nav a:hover {
   }
   
   .favorite-icon {
-    color: red;
+    color: #9bff60;
     font-size: 20px;
   }
 
@@ -413,7 +410,7 @@ nav a:hover {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border-left: 4px solid #a259ff; /* purple accent line */
+  border-left: 4px solid #9bff60; /* purple accent line */
   margin-bottom: 12px;
   transition: transform 0.2s ease;
 }
@@ -440,26 +437,39 @@ nav a:hover {
   background-color: #a259ff;
   color: white;
 }
-.x-post-btn img {
-    height: 24px;
-    width: 24px;
-    object-fit: contain; 
-  }
-  #load-more-btn {
-    display: block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    width: 100%;
-    background-color: #6a0dad;
-    color: #1a1a1a;
+
+#load-more-btn {
+    background-color: #9bff60;
+    color: #1f1f1f;
     border: none;
-    border-radius: 10px;
+    padding: 6px 14px;
+    border-radius: 20px;
     font-weight: bold;
-    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.2s ease;
-  }
-  
-  #load-more-btn:hover {
-    background-color: #e0e0e0;
-  }
+}
+
+#post-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 100px;
+    text-align: center;
+    background: none;
+}
+
+#post-btn img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #9bff60;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.2s ease;
+    background-color: #444;
+}
+
+#post-btn:hover img {
+    border: 3px solid #6a0dad;
+}
