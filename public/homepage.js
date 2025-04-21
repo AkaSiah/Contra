@@ -140,7 +140,7 @@ renderCommunities();
         // Fetch posts from the local API or mock data
         async function fetchPosts() {
           try {
-            const response = await fetch('http://localhost:3000/api/getPosts');
+            const response = await fetch('/api/getPosts');
             if (!response.ok) {
               throw new Error('Failed to fetch posts');
             }
