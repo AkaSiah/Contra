@@ -17,7 +17,7 @@ export default async function handler(req, res) {
   const params = new URLSearchParams({
     response_type: 'code',
     client_id: CLIENT_ID,
-    redirect_uri: 'https://your-deployment.vercel.app/api/auth/twitter/callback',
+    redirect_uri: 'https://contra-5hfqdq6wa-akasiahs-projects.vercel.app/api/auth/twitter/callback',
     scope: 'tweet.read tweet.write users.read bookmark.write',
     state,
     code_challenge: codeChallenge,
